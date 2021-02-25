@@ -1,0 +1,8 @@
+$width: 100px;
+$height: 100px;
+$bgColor: blue;
+#box1 {
+  width: $width * 3;
+  height: $height* 3;
+  background: $bgColor;
+}
