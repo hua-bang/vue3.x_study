@@ -1,0 +1,13 @@
+#box{
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+
+#img1 {
+    width: 1920px;
+    height: 1022px;
+    background-image: url('./demo.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

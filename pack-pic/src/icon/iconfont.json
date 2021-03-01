@@ -1,0 +1,23 @@
+{
+  "id": "2392169",
+  "name": "demo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "16274506",
+      "name": "meditor-time",
+      "font_class": "time",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "19191816",
+      "name": "user",
+      "font_class": "user_pre",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}
