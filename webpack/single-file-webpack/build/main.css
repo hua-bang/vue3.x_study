@@ -1,0 +1,13 @@
+#box {
+  width: 200px;
+  height: 200px;
+  background: green;
+  color: white;
+}
+
+#box1{
+    width: 500px;
+    height: 500px;
+    background: red;
+}
+
