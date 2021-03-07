@@ -44,7 +44,7 @@ module.exports = {
     target: "web",
     mode: "development",
     devServer: {
-        port: 3001,
+        port: 8001,
         compress: true,
         open: true,
         hot: true

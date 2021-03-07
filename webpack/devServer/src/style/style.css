@@ -6,3 +6,9 @@
 .test{
     font-size: 40px;
 }
+#all{
+    color: red;
+}
+.demo{
+    background: red;
+}
