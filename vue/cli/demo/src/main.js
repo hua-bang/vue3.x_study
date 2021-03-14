@@ -1,4 +1,4 @@
 import {createApp} from "vue";
-import App from "@/App3";
+import App from "@/App4";
 
 createApp(App).mount("#app");
