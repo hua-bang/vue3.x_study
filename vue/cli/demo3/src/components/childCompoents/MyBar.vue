@@ -1,10 +1,19 @@
 <template>
-  <div class="myBar">bar</div>
+  <div class="myBar">
+    <slot name="one"></slot>
+    <slot name="two" :two="user"></slot>
+    <slot name="three" :user="user"></slot>
+  </div>
 </template>
 
 <script>
 export default {
-name: "MyBar"
+  name: "MyBar",
+  data() {
+    return {
+      user: {name: "hug"}
+    }
+  }
 }
 </script>
 
