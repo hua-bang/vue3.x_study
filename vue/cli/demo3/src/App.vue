@@ -5,7 +5,7 @@
     </header>
     <div class="main">
       <div class="content">
-        <MyMain></MyMain>
+        <MyMain msg="hello world" :title="title" :arr="arr" my-title="my title"></MyMain>
       </div>
       <div class="sidebar">
         <MySideBar></MySideBar>
@@ -34,7 +34,8 @@ export  default {
   },
   data() {
     return {
-
+      title: "this is title",
+      arr: [1,2,3,4]
     }
   }
 }
