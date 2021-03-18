@@ -12,9 +12,10 @@
       </div>
     </div>
     <footer class="footer">
-      <MyFooter></MyFooter>
+      <MyFooter ref="footer"></MyFooter>
     </footer>
   </div>
+  <button @click="childMethod">child method</button>
 </template>
 
 <script>
@@ -36,6 +37,14 @@ export  default {
     return {
       title: "this is title",
       arr: [1,2,3,4]
+    }
+  },
+  methods: {
+    appMethod() {
+      console.log("App method");
+    },
+    childMethod() {
+      this.$refs.footer.changeCount(10);
     }
   }
 }
