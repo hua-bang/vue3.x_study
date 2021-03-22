@@ -31,6 +31,14 @@ const routes = [
                 component: MySetting,
             }
         ]
+    },
+    {
+        path: "/lesson/:id",
+        component: () => import("../views/Lesson")
+    },
+    {
+        path: "/page",
+        component: () => import("../views/Page")
     }
 ];
 const router = createRouter({
