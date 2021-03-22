@@ -1,10 +1,10 @@
 <template>
-  <div>this is about page</div>
+  <div>setting</div>
 </template>
 
 <script>
 export default {
-  name: "About"
+name: "MySetting"
 }
 </script>
 

@@ -1,15 +1,9 @@
 <template>
-  <div id="nav">
-    <div>
-      <!--      渲染成a标签-->
-      <router-link to="/">首页</router-link>
-    </div>
-  <div>
-    <router-link to="/about">关于</router-link>
+  <div id="main">
+<!--    <router-view class="left" name="left"></router-view>-->
+<!--    <router-view class="right"></router-view>-->
+    <router-view></router-view>
   </div>
-
-  </div>
-  <router-view></router-view>
 </template>
 
 <script>
@@ -29,5 +23,20 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#main{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.left,.right {
+  width: 50%;
+  height: 100%;
+}
+.left{
+  background: #42b983;
+}
+.right{
+  background: #dac0f1;
 }
 </style>
