@@ -2,7 +2,17 @@
   <div id="main">
 <!--    <router-view class="left" name="left"></router-view>-->
 <!--    <router-view class="right"></router-view>-->
-    <router-view></router-view>
+    <div style="width: 100%">
+      <router-link to="/">home</router-link>
+      <router-link to="about">about</router-link>
+    </div>
+    <router-view v-slot="{ Component }">
+      <transition>
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
 
