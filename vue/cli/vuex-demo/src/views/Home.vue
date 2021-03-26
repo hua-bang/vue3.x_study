@@ -15,6 +15,10 @@
     <button @click="supValArr">-</button>
   </div>
   <div>
+    <button @click="actionTest">action按钮</button>
+    <button @click="asyncActionTest">asyncAction按钮</button>
+  </div>
+  <div>
     <Sup></Sup>
   </div>
 </template>
@@ -45,6 +49,14 @@ export default {
     },
     supValArr() {
       this.$store.commit("supValArr",[2,6,10]);
+    },
+    actionTest() {
+      this.$store.dispatch("actionA");
+    },
+    asyncActionTest() {
+      this.$store.dispatch("asyncAction").then(() => {
+        console.log("asyncActionTest");
+      })
     }
   }
 };

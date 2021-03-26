@@ -50,6 +50,18 @@ export default createStore({
       state.num -= valSum;
     }
   },
-  actions: {},
+  actions: {
+    actionA({commit}) {
+      setTimeout(() => {
+        commit("add");
+      }, 1000)
+    },
+    asyncAction({commit}) {
+      return new Promise(resolve => {
+        commit("add");
+        resolve();
+      })
+    }
+  },
   modules: {},
 });
