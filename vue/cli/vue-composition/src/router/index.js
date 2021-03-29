@@ -29,6 +29,10 @@ const routes = [
     {
         path: "/Computed",
         component: () => import("../views/Computed")
+    },
+    {
+        path: "/Watch",
+        component: () => import("../views/Watch")
     }
 ];
 
