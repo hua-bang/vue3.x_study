@@ -21,6 +21,10 @@ const routes = [
                 component: () => import("../views/setUp/Component")
             }
         ]
+    },
+    {
+        path: "/Composition",
+        component: () => import("../views/Composition")
     }
 ];
 
