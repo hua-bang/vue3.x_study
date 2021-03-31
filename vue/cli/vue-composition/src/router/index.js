@@ -63,7 +63,11 @@ const routes = [
                 component: () => import("../components/Router/Info")
             },
         ]
-    }
+    },
+    {
+        path: "/test/:id",
+        component: () => import("../components/Router/Info")
+    },
 ];
 
 const router = createRouter({

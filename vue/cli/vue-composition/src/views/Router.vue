@@ -29,10 +29,12 @@ import { useRouter } from "vue-router"
 export default {
   name: "Router",
   setup() {
+
     const router = useRouter();
     const toInfo = () => {
       router.push("/router/2/info")
     }
+
     return {
       toInfo
     }
