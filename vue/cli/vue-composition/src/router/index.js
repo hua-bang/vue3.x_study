@@ -68,6 +68,10 @@ const routes = [
         path: "/test/:id",
         component: () => import("../components/Router/Info")
     },
+    {
+        path: "/store",
+        component: () => import("../views/Store")
+    }
 ];
 
 const router = createRouter({
