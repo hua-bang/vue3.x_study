@@ -41,6 +41,28 @@ const routes = [
     {
         path: "/provide_inject",
         component: () => import("../views/Provide_Inject")
+    },
+    {
+        path: "/router",
+        component: () => import("../views/Router"),
+        children: [
+            {
+                path: "index",
+                component: () => import("../components/Router/index")
+            },
+            {
+                path: "home",
+                component: () => import("../components/Router/home")
+            },
+            {
+                path: "about",
+                component: () => import("../components/Router/about")
+            },
+            {
+                path: ":id/info",
+                component: () => import("../components/Router/Info")
+            },
+        ]
     }
 ];
 
