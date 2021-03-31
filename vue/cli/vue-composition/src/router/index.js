@@ -33,6 +33,14 @@ const routes = [
     {
         path: "/Watch",
         component: () => import("../views/Watch")
+    },
+    {
+        path: "/lifeHook",
+        component: () => import("../views/LifeHook")
+    },
+    {
+        path: "/provide_inject",
+        component: () => import("../views/Provide_Inject")
     }
 ];
 
