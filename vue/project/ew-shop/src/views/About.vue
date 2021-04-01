@@ -4,3 +4,17 @@
     <img src="~assets/logo.png" />
   </div>
 </template>
+
+<script>
+import {getHomeData} from "../api/shop";
+
+export default {
+  name: "About",
+  setup() {
+    getHomeData().then(res => {
+      console.log(res);
+    })
+  }
+}
+
+</script>
