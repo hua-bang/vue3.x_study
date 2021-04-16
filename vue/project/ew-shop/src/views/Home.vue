@@ -12,6 +12,7 @@
     <div class="recommend">
       <RecommendView :recommends="recommends"></RecommendView>
     </div>
+    <TabControl @tabClick="tabClick" :title="['畅销', '新书', '精选']"></TabControl>
   </div>
 </template>
 
@@ -19,6 +20,7 @@
 // @ is an alias to /src
 import NavBar from "../components/common/navbar/NavBar";
 import RecommendView from "./home/ChildComps/RecommendView";
+import TabControl from "../components/contect/tabControl/TabControl";
 
 import {getHomeData} from "../api/shop";
 import {onMounted, ref} from "vue";
@@ -27,7 +29,8 @@ export default {
   name: 'Home',
   components: {
     NavBar,
-    RecommendView
+    RecommendView,
+    TabControl
   },
   setup() {
     const recommends = ref([]);
@@ -38,8 +41,13 @@ export default {
       })
     });
 
+    const tabClick = (val) => {
+      console.log(val);
+    }
+
     return {
-      recommends
+      recommends,
+      tabClick
     }
   }
 }
