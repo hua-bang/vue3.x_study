@@ -17,7 +17,7 @@ request.interceptors.response.use(response => {
     if(response.status !== 200) {
         console.log(`status is not 200, but ${response.status}`);
     }
-    return response;
+    return response.data;
 })
 
 
