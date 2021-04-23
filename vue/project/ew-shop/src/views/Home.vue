@@ -1,19 +1,26 @@
 <template>
-  <div>
+  <div id="home">
     <nav-bar>
       <template v-slot:default>
         图书兄弟
       </template>
     </nav-bar>
-    
-    <div class="banners">
-      <img src="~assets/images/resource/20210406sxj_750x315.jpg" alt="">
+
+    <div class="wrapper" ref="wrapper">
+      <div class="content">
+        <div ref="banRef">
+          <div class="banners">
+            <img src="~assets/images/resource/20210406sxj_750x315.jpg" alt="">
+          </div>
+          <div class="recommend">
+            <RecommendView :recommends="recommends"></RecommendView>
+          </div>
+        </div>
+        <TabControl @tabClick="tabClick" :title="['畅销', '新书', '精选']"></TabControl>
+        <GoodList :goods="showGoods"></GoodList>
+      </div>
     </div>
-    <div class="recommend">
-      <RecommendView :recommends="recommends"></RecommendView>
-    </div>
-    <TabControl @tabClick="tabClick" :title="['畅销', '新书', '精选']"></TabControl>
-    <GoodList :goods="showGoods"></GoodList>
+    <BackTop @backTop="backTop"></BackTop>
   </div>
 </template>
 
@@ -23,9 +30,11 @@ import NavBar from "../components/common/navbar/NavBar";
 import RecommendView from "./home/ChildComps/RecommendView";
 import TabControl from "../components/contect/tabControl/TabControl";
 import GoodList from "../components/contect/goods/GoodList";
-
+import BackTop from "../components/common/backTop/BackTop";
 import {getHomeData, getHomeGoods} from "../api/shop";
-import {computed, onMounted, reactive, ref} from "vue";
+import {computed, onMounted, reactive, ref, watchEffect, nextTick} from "vue";
+import BetterScroll from 'better-scroll'
+
 
 export default {
   name: 'Home',
@@ -33,15 +42,19 @@ export default {
     NavBar,
     RecommendView,
     TabControl,
-    GoodList
+    GoodList,
+    BackTop
   },
   setup() {
+
+    let isTabFixed = ref(true);
     const recommends = ref([]);
+    let banRef= ref(null);
 
     const goods = reactive({
-      sales: {page:0, list: []},
-      new: {page:0, list: []},
-      recommend: {page:0, list: []}
+      sales: {page: 1, list: []},
+      new: {page: 1, list: []},
+      recommend: {page: 1, list: []}
     })
 
     let currentType = ref('sales');
@@ -49,6 +62,8 @@ export default {
     const showGoods = computed(() => {
       return goods[currentType.value].list;
     })
+
+    let bsScroll = reactive({});
 
     onMounted(() => {
       getHomeData().then((res) => {
@@ -66,18 +81,58 @@ export default {
       getHomeGoods('new').then(res => {
         goods.new.list = res.goods.data;
       });
+
+      bsScroll = new BetterScroll(document.querySelector(".wrapper"), {
+        probeType: 3,
+        click: true,
+        pullUpLoad: true
+      });
+
+      bsScroll.on("scroll", (position) => {
+        isTabFixed.value = (-position.y) > banRef.value.offsetHeight;
+      })
+
+      bsScroll.on("pullingUp", () => {
+        const page = goods[currentType.value].page + 1;
+        getHomeGoods(currentType.value, page).then(res => {
+          goods[currentType.value].list.push(...res.goods.data);
+          goods[currentType.value].page += 1;
+        })
+
+        bsScroll.finishPullUp();
+
+        bsScroll.refresh();
+      })
+
     });
+
+    watchEffect(() => {
+      nextTick(() => {
+        bsScroll && bsScroll.refresh();
+      })
+    })
 
     const tabClick = (val) => {
       let types = ['sales', 'new', 'recommend'];
       currentType.value = types[val];
+
+      nextTick(() => {
+        bsScroll && bsScroll.refresh();
+      })
+    }
+
+    const backTop = () => {
+      bsScroll.scrollTo(0,0,500)
     }
 
     return {
       recommends,
       tabClick,
       goods,
-      showGoods
+      showGoods,
+      isTabFixed,
+      banRef,
+      backTop
     }
   }
 }
@@ -87,6 +142,20 @@ export default {
 .banners img {
   width: 100%;
   height: auto;
-  margin-top: 45px;
+}
+#home {
+  height: 100vh;
+  position: relative;
+}
+.wrapper {
+  position: absolute;
+  top: 45px;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+.content {
+
 }
 </style>
